@@ -1,38 +1,17 @@
 package router
 
 import (
-	"net/http"
-
+	"github.com/brunoaalexandree/gook/handler"
 	"github.com/gin-gonic/gin"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "GET Book",
-			})
-		})
-		v1.POST("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "POST Book",
-			})
-		})
-		v1.PUT("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "PUT Book",
-			})
-		})
-		v1.DELETE("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "DELETE Book",
-			})
-		})
-		v1.GET("/books", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "GET Books",
-			})
-		})
+		v1.GET("/book", handler.GetBookHandler)
+		v1.POST("/book", handler.CreateBookHandler)
+		v1.PUT("/book", handler.UpdateBookHandler)
+		v1.DELETE("/book", handler.DeleteBookHandler)
+		v1.GET("/books", handler.GetBooksHandler)
 	}
 }
