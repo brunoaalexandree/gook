@@ -16,3 +16,5 @@
 # DB Folder
 
 db/
+
+.env
